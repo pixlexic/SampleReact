@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import SampleItemModel from '../models/sampleitemmodel';
 import ExampleItemComponent from './exampleitemcomponent';
 
+import { Chart } from "react-google-charts";
 
 export default function ExampleFormComponent({data,onChangData}) {
 
@@ -46,6 +47,20 @@ const selectItem = () => {
     onChangData(data);
 
   }
+
+
+   const pcdata = [
+    ["Task", "Qty to Sold"],
+    ["Qty", _currentItem.qty],
+    ["Sold", _currentItem.sold],
+  ];
+  
+ const pcoptions = {
+    title: "Qty to Sold",
+    legend: {position: 'top'},
+    colors: ['#999999', '#bbbbbb']
+  };
+
 
 
   return (
@@ -94,7 +109,13 @@ const selectItem = () => {
                     <div style={{flex: '1 1 auto', display:'flex'}}>
                         <div style={{ flex: '1 1 auto'}}></div>
                         <div style={{ flex: '0 1 auto', width: '400px', backgroundColor:'#edededed'}}>
-                       
+                        <Chart 
+      chartType="PieChart"
+      data={pcdata}
+      options={pcoptions}
+      width={"400px"}
+      height={"300px"}
+    />
                         </div>
                         <div style={{flex: '1 1 auto'}}   ></div>
                     </div>
